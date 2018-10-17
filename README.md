@@ -1,9 +1,8 @@
-# Hello Kubernetes!
-
-This image can be deployed on a Kubernetes cluster. It displays:
-- a default **Hello world!** message
-- the pod name
-- node os information
+# Hello Kubernetes demonstration will help you to cover the following topics
+* How to deploy a docker to kubernetes
+* How to deploy from yaml file
+* ConfigMap & Secret: Best practices
+* ...
 
 The default "Hello world!" message displayed can be overridden using the `MESSAGE` environment variable.
 
