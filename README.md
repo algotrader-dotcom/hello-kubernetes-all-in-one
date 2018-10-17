@@ -51,7 +51,7 @@ kubectl create secret generic env-secret --from-env-file=./secret/secret.env -o 
 # How to update image for a deployment
 ```
 kubectl get svc
-set image deployment/hello-app hello-app=gcr.io/k8s-test-218207/hello-app:v1.5
+Update image version in yaml/hello-app.yaml then kubectl apply -f yaml/hello-app.yaml
 kubectl rollout status deployment/hello-app
 ```
 # Print env pods
