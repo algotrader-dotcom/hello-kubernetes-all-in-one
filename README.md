@@ -33,7 +33,7 @@ This will display a **Hello world!** message when you hit the service endpoint i
 $ kubectl get svc
 ```
 
-# Creating the ConfigMap and Secret
+# Creating the ConfigMap and Secret from file
 ```
 kubectl create secret generic env-secret --from-env-file=./secret/secret.env
 kubectl create configmap env-config --from-env-file=./config/config.env
