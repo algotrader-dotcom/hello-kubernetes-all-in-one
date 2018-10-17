@@ -54,3 +54,8 @@ kubectl get svc
 set image deployment/hello-app hello-app=gcr.io/k8s-test-218207/hello-app:v1.5
 kubectl rollout status deployment/hello-app
 ```
+# Print env pods
+```
+kubectl get pods
+kubectl exec -ti hello-app-8568d9f9df-khdv2 env
+```
