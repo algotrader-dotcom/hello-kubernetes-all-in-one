@@ -1,4 +1,4 @@
-# Hello Kubernetes demonstration will help you to cover the following topics
+# Hello Kubernetes -  Topics
 * How to deploy a docker to kubernetes
 * How to deploy from yaml file
 * ConfigMap & Secret: Best practices
