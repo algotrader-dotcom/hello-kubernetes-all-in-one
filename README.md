@@ -2,7 +2,7 @@
 * How to deploy a docker to kubernetes
 * How to deploy from yaml file ( service & deployment )
 * ConfigMap & Secret: Best practices
-* ...
+* Nginx Ingress ( In progress ...)
 
 The default "Hello world!" message displayed can be overridden using the `MESSAGE` environment variable.
 
