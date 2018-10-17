@@ -1,6 +1,6 @@
 # Hello Kubernetes -  Topics
 * How to deploy a docker to kubernetes
-* How to deploy from yaml file
+* How to deploy from yaml file ( service & deployment )
 * ConfigMap & Secret: Best practices
 * ...
 
