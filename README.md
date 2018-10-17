@@ -15,7 +15,7 @@ You can deploy the image to your Kubernetes cluster one of two ways:
 Deploy using the hello-kubernetes.yaml, which contains definitions for the service and deployment objects:
 
 ```
-$ docker build -t gcr.io/${PROJECT_ID}:hello-app:v1.6
+$ docker build -t gcr.io/${PROJECT_ID}/hello-app:v1.6 .
 $ gcloud docker -- push gcr.io/${PROJECT_ID}/hello-app:v1.6
 $ kubectl apply -f yaml/hello-app.yaml
 ```
