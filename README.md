@@ -34,7 +34,7 @@ $ kubectl get svc
 # Creating the ConfigMap and Secret
 ```
 kubectl create secret generic env-secret --from-env-file=./secret/secret.env
-kubectl create configmap env-config --from-file=./config/config.env
+kubectl create configmap env-config --from-env-file=./config/config.env
 
 kubectl get secret
 kubectl get configmap
