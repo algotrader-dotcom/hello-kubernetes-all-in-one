@@ -45,3 +45,10 @@ kubectl get configmap
 kubectl create configmap env-config --from-env-file=./config/config.env -o yaml --dry-run | kubectl replace -f -
 kubectl create secret generic env-secret --from-env-file=./secret/secret.env -o yaml --dry-run | kubectl replace -f -
 ```
+
+# How to update image for a deployment
+```
+kubectl get svc
+set image deployment/hello-app hello-app=gcr.io/k8s-test-218207/hello-app:v1.5
+kubectl rollout status deployment/hello-app
+```
