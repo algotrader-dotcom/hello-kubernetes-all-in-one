@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: gcr.io/k8s-test-218207/jenkins:v1.0
+          image: gcr.io/k8s-test-218207/jenkins-app:v1.1
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false

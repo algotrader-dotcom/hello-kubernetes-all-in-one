@@ -1,0 +1,1 @@
+docker build -t docker-drupal:1.0 .

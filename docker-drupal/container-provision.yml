@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+
+  vars_files:
+    - group_vars/all.yml
+
+  #pre_tasks:
+  #  - include: tasks/pre-tasks.yml
+
+  roles:
+    - { role: sysadmin.common, tags: ['common'] }
+    - { role: sysadmin.php7x, tags: ['php'] }
+    - { role: sysadmin.supervisord, tags: ['supervisord'] }    
+
+  tasks:
+    #- include: tasks/post-tasks.yml

@@ -1,0 +1,57 @@
+---
+# tasks file for sysadmin.php71
+
+- name: PHP | Install Ondrej PHP PPA
+  apt_repository: repo='ppa:ondrej/php' update_cache=yes
+
+- name: PHP | Install PHP {{ php_version }}
+  apt: name=php{{ php_version }} state=latest
+
+- name: PHP | Install PHP Modules
+  apt: name={{ packages }} state=latest
+  vars:
+    packages:
+      - php{{ php_version }}
+      - php{{ php_version }}-cli
+      - php{{ php_version }}-fpm
+      - php{{ php_version }}-common
+      - php{{ php_version }}-mbstring
+      - php{{ php_version }}-gd
+      - php{{ php_version }}-mcrypt
+      - php{{ php_version }}-zip
+      - php{{ php_version }}-bcmath
+      - php{{ php_version }}-curl
+      - php{{ php_version }}-dev
+      - php{{ php_version }}-fpm
+      - php{{ php_version }}-imap
+      - php{{ php_version }}-intl
+      - php{{ php_version }}-json
+      - php{{ php_version }}-mysql
+      - php{{ php_version }}-opcache
+      - php{{ php_version }}-readline
+      - php{{ php_version }}-xml
+  notify: restart webserver
+
+# tasks php-fpm pool conf
+- name: Template php-fpm pool www
+  template:
+    src: templates/www.j2
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+  notify: restart webserver
+
+#- name: Make php{{ php_version }}-fpm service is running
+#  systemd:
+#    state: started
+#    name: php{{ php_version }}-fpm
+
+- name: Template php.ini cli
+  template:
+    src: templates/php.ini.cli.j2
+    dest: /etc/php/{{ php_version }}/cli/php.ini
+  notify: restart webserver
+
+- name: Template php.ini fpm
+  template:
+    src: templates/php.ini.fpm.j2
+    dest: /etc/php/{{ php_version }}/fpm/php.ini
+  notify: restart webserver

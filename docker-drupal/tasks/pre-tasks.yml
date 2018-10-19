@@ -1,0 +1,11 @@
+# Remove unused php
+- name: Remove unused php7.0 
+  apt: pkg=php7.0 state=absent autoremove=yes autoclean=yes
+
+- name: Remove unused php7.2
+  apt: pkg=php7.2 state=absent autoremove=yes autoclean=yes
+
+- name: Clean unwanted olderstuff ( apt-get autoremove -y )
+  apt:
+    autoremove: yes
+    purge: yes

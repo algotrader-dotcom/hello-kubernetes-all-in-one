@@ -1,0 +1,12 @@
+---
+# tasks file for roles/sysadmin.supervisord
+- name: Install packages
+  apt: 
+    name: supervisor
+    state: latest
+
+# tasks supervisord conf
+- name: Template supervisord conf
+  template:
+    src: templates/supervisord.j2
+    dest: /etc/supervisor/conf.d/supervisord.conf
