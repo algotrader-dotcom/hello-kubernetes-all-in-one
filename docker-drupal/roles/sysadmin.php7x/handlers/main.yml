@@ -1,7 +1,2 @@
 ---
 # handlers file for roles/sysadmin.php7x
-- name: restart webserver
-  service:
-    name: php{{ php_version }}-fpm
-    state: restarted
-  become: yes

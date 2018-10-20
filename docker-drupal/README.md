@@ -1,1 +1,2 @@
-docker build -t docker-drupal:1.0 .
+docker build -t drupal01 .
+docker run -ti drupal01

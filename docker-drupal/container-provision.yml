@@ -10,6 +10,7 @@
 
   roles:
     - { role: sysadmin.common, tags: ['common'] }
+    - { role: sysadmin.nginx, tags: ['nginx'] }
     - { role: sysadmin.php7x, tags: ['php'] }
     - { role: sysadmin.supervisord, tags: ['supervisord'] }    
 

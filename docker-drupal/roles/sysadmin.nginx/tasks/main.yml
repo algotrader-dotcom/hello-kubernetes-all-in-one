@@ -1,0 +1,31 @@
+---
+# tasks file for roles/sysadmin.nginx
+# Ref: https://linuxize.com/post/how-to-install-nginx-on-ubuntu-16-04/
+- name: PHP | Install Ondrej PHP PPA
+  apt_repository: repo='ppa:nginx/stable' update_cache=yes
+
+- name: Install nginx
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - nginx
+
+- name: Remove default nginx
+  file:
+    path: "/etc/nginx/sites-available/default"
+    state: absent
+
+- name: Remove default nginx
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+
+# with_items is a list of name in templates
+- name: Configure vhosts
+  template:
+    src: 'templates/{{ item }}.conf.j2'
+    dest: '/etc/nginx/sites-enabled/{{ item }}.conf'
+    force: yes
+  with_items:
+    - vhost-01
+    - vhost-02

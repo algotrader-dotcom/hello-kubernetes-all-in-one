@@ -30,14 +30,18 @@
       - php{{ php_version }}-opcache
       - php{{ php_version }}-readline
       - php{{ php_version }}-xml
-  notify: restart webserver
+
+- name: Make sure /run/php exists
+  file:
+    path: /run/php
+    state: directory
+    mode: 0755
 
 # tasks php-fpm pool conf
 - name: Template php-fpm pool www
   template:
     src: templates/www.j2
     dest: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
-  notify: restart webserver
 
 #- name: Make php{{ php_version }}-fpm service is running
 #  systemd:
@@ -48,10 +52,8 @@
   template:
     src: templates/php.ini.cli.j2
     dest: /etc/php/{{ php_version }}/cli/php.ini
-  notify: restart webserver
 
 - name: Template php.ini fpm
   template:
     src: templates/php.ini.fpm.j2
     dest: /etc/php/{{ php_version }}/fpm/php.ini
-  notify: restart webserver
