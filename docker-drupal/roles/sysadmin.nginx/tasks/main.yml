@@ -20,6 +20,15 @@
     path: "/etc/nginx/sites-enabled/default"
     state: absent
 
+# Remove unused vhosts
+- name: Remove unsued vhosts
+  file:
+    path: '/etc/nginx/sites-enabled/{{ item }}.conf'
+    state: absent
+  with_items:
+    - vhost-01
+    - vhost-02
+
 # with_items is a list of name in templates
 - name: Configure vhosts
   template:
@@ -27,5 +36,4 @@
     dest: '/etc/nginx/sites-enabled/{{ item }}.conf'
     force: yes
   with_items:
-    - vhost-01
-    - vhost-02
+    - demo.com

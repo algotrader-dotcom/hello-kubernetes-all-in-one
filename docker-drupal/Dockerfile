@@ -10,7 +10,7 @@ RUN mkdir /ansible#
 COPY . /ansible
 
 # Launch Ansible playbook from inside container
-RUN cd /ansible && ansible-playbook container-provision.yml -v
+RUN cd /ansible && ansible-playbook container-provision.yml
 
 # Cleanup
 RUN rm -rf /ansible
