@@ -12,6 +12,6 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_HOST=127.0.0.1
+      - MYSQL_PORT=3306

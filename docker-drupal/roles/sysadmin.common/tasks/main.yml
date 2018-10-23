@@ -8,3 +8,5 @@
   vars:
     packages:
       - python-software-properties
+      - git
+      - mysql-client
