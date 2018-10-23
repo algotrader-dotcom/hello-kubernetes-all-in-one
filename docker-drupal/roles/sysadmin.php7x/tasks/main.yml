@@ -4,14 +4,14 @@
 - name: PHP | Install Ondrej PHP PPA
   apt_repository: repo='ppa:ondrej/php' update_cache=yes
 
-- name: PHP | Install PHP {{ php_version }}
-  apt: name=php{{ php_version }} state=latest
+#- name: PHP | Install PHP {{ php_version }}
+#  apt: name=php{{ php_version }} state=latest
 
 - name: PHP | Install PHP Modules
   apt: name={{ packages }} state=latest
   vars:
     packages:
-      - php{{ php_version }}
+      #- php{{ php_version }}
       - php{{ php_version }}-cli
       - php{{ php_version }}-fpm
       - php{{ php_version }}-common

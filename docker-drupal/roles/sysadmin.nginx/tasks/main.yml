@@ -15,10 +15,13 @@
     path: "/etc/nginx/sites-available/default"
     state: absent
 
-- name: Remove default nginx
+- name: nginx.conf
   file:
-    path: "/etc/nginx/sites-enabled/default"
+    path: '/etc/nginx/sites-enabled/{{ item }}.conf'
     state: absent
+  with_items:
+    - vhost-01
+    - vhost-02
 
 # Remove unused vhosts
 - name: Remove unsued vhosts
@@ -28,6 +31,14 @@
   with_items:
     - vhost-01
     - vhost-02
+
+- name: nginx.conf
+  template:
+    src: 'templates/{{ item }}.conf'
+    dest: '/etc/nginx/{{ item }}.conf'
+    force: yes
+  with_items:
+    - nginx
 
 # with_items is a list of name in templates
 - name: Configure vhosts

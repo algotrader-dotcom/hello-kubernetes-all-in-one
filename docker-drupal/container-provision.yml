@@ -12,6 +12,8 @@
     - { role: sysadmin.common, tags: ['common'] }
     - { role: sysadmin.nginx, tags: ['nginx'] }
     - { role: sysadmin.php7x, tags: ['php'] }
+    - { role: geerlingguy.composer, tags: ['composer'] }
+    - { role: geerlingguy.drush, tags: ['drush'] }
     - { role: sysadmin.supervisord, tags: ['supervisord'] }    
 
   tasks:

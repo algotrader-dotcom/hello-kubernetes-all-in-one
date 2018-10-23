@@ -10,14 +10,14 @@ RUN mkdir /ansible#
 COPY . /ansible
 
 # Launch Ansible playbook from inside container
-RUN cd /ansible && ansible-playbook container-provision.yml
+RUN cd /ansible && ansible-playbook container-provision.yml -v
 
 # Cleanup
 RUN rm -rf /ansible
 #RUN for dep in $(pip show ansible | grep Requires | sed 's/Requires: //g; s/,//g'); do pip uninstall -y $dep; done
 #RUN apt-get purge -y python-dev python-pip
-RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp* /usr/share/doc/*
+#RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y
+#RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp* /usr/share/doc/*
 
 # Environment setup
 WORKDIR /
