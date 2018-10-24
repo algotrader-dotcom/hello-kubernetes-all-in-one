@@ -7,5 +7,5 @@ https://gist.github.com/delphian/6043424
 
 ```
 composer create-project drupal-composer/drupal-project:8.x-dev /var/www/drupal/ --stability dev --no-interaction
-drush site-install standard --account-name=admin --account-pass=admin --db-url=mysql://root:root@mysql/drupal -y
+cd /var/www/drupal/ && drush site-install standard --account-name=admin --account-pass=admin --db-url=mysql://root:root@mysql/drupal -y
 ```
