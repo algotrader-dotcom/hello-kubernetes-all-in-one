@@ -10,6 +10,8 @@ The default port of 8080 can be overriden using the `PORT` environment variable.
 
 # Deploy
 
+All deployment with K8s is located in yaml directory.
+
 You can deploy the image to your Kubernetes cluster one of two ways:
 
 Deploy using the hello-kubernetes.yaml, which contains definitions for the service and deployment objects:
