@@ -14,37 +14,27 @@
   file:
     path: "/etc/nginx/sites-available/default"
     state: absent
-
-- name: nginx.conf
-  file:
-    path: '/etc/nginx/sites-enabled/{{ item }}.conf'
-    state: absent
-  with_items:
-    - vhost-01
-    - vhost-02
+  when: nginx_remove_default_vhost == true
 
 # Remove unused vhosts
-- name: Remove unsued vhosts
+- name: nginx_remove_sites
   file:
     path: '/etc/nginx/sites-enabled/{{ item }}.conf'
     state: absent
-  with_items:
-    - vhost-01
-    - vhost-02
+  with_items: "{{ nginx_remove_sites }}"
 
+# nginx.conf
 - name: nginx.conf
   template:
     src: 'templates/{{ item }}.conf'
     dest: '/etc/nginx/{{ item }}.conf'
     force: yes
-  with_items:
-    - nginx
+  with_items: "{{ nginx_conf }}"
 
 # with_items is a list of name in templates
-- name: Configure vhosts
+- name: nginx_sites
   template:
     src: 'templates/{{ item }}.conf.j2'
     dest: '/etc/nginx/sites-enabled/{{ item }}.conf'
     force: yes
-  with_items:
-    - demo.com
+  with_items: "{{ nginx_sites }}"

@@ -1,2 +1,10 @@
 ---
 # defaults file for roles/sysadmin.nginx
+env: stage
+nginx_remove_default_vhost: false
+nginx_conf: "nginx"
+nginx_remove_sites:
+  - vhost-01
+  - vhost-02
+nginx_sites:
+  - demo.com
