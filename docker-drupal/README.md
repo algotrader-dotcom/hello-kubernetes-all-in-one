@@ -18,7 +18,7 @@ export PROJECT_ID="$(gcloud config get-value project -q)"
 ```
 # Build & Upload to Google Container Registry
 ```
-docker build -t gcr.io/${PROJECT_ID}/drupal-app:v1.0 .
+docker build --no-cache -t gcr.io/${PROJECT_ID}/drupal-app:v1.0 .
 gcloud docker -- push gcr.io/${PROJECT_ID}/drupal-app:v1.0
 
 cd ..
