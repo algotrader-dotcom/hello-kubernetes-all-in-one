@@ -10,10 +10,19 @@ composer create-project drupal-composer/drupal-project:8.x-dev /var/www/drupal/ 
 cd /var/www/drupal/ && drush site-install standard --account-name=admin --account-pass=admin --db-url=mysql://root:root@mysql/drupal -y
 ```
 
+# GCloud config
+```
+gcloud config set project k8s-test-218207
+gcloud config set compute/zone us-central1-a
+export PROJECT_ID="$(gcloud config get-value project -q)"
+```
 # Build & Upload to Google Container Registry
 ```
-export PROJECT_ID="$(gcloud config get-value project -q)"
+docker build -t gcr.io/${PROJECT_ID}/drupal-app:v1.0 .
+gcloud docker -- push gcr.io/${PROJECT_ID}/drupal-app:v1.0
 
-docker build -t gcr.io/${PROJECT_ID}/drupal-app:v1 .
-gcloud docker -- push gcr.io/${PROJECT_ID}/drupal-app:v1
+cd ..
+kubectl apply -f yaml/drupal-mysql-pv.yaml
+kubectl apply -f yaml/drupal-mysql.yaml
+kubectl apply -f yaml/drupal-app.yaml
 ```

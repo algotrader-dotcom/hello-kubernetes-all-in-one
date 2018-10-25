@@ -26,10 +26,10 @@ spec:
     spec:
       containers:
       - name: drupal-app
-        image: gcr.io/k8s-test-218207/drupal-app:v1
-        #envFrom:
-        #  - configMapRef:
-        #      name: env-config
+        image: gcr.io/k8s-test-218207/drupal-app:v1.0
+        envFrom:
+          - configMapRef:
+              name: env-config
         #  - secretRef:
         #      name: env-secret
         ports:
