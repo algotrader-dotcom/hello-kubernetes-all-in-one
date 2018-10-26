@@ -2,15 +2,14 @@
 # defaults file for roles/sysadmin.nginx
 env: stage
 letsencrypt_email: thuan.nguyen@nfq.asia
+
 nginx_remove_default_vhost: true
 nginx_conf: "nginx"
+
 nginx_remove_sites:
   - vhost-01
   - vhost-02
-nginx_sites:
-  - demo.com
-  - abc.com
 
-domain_name:
+nginx_sites:
   - demo.com
   - abc.com

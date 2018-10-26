@@ -1,7 +1,7 @@
 ---
 # tasks file for roles/sysadmin.nginx
 # Ref: https://linuxize.com/post/how-to-install-nginx-on-ubuntu-16-04/
-- name: PHP | Install Ondrej PHP PPA
+- name: ppa:nginx/stable
   apt_repository: repo='ppa:nginx/stable' update_cache=yes
 
 - name: Install nginx
@@ -31,14 +31,7 @@
 # with_items is a list of name in templates
 - name: nginx_sites
   template:
-    src: 'templates/nginx-http.conf.j2'
-    dest: '/etc/nginx/sites-enabled/{{ item }}.conf'
-    force: yes
-  with_items: "{{ nginx_sites }}"
-
-- name: nginx_sites https
-  template:
-    src: 'templates/nginx-https.conf.j2'
+    src: 'templates/vhost.conf.j2'
     dest: '/etc/nginx/sites-enabled/{{ item }}.conf'
     force: yes
   with_items: "{{ nginx_sites }}"
@@ -50,19 +43,20 @@
 - name: create letsencrypt directory
   file: name=/var/www/letsencrypt state=directory
 
-- name: Create letsencrypt certificate
-  shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
-  args:
-    creates: /etc/letsencrypt/live/{{ domain_name }}
+#- name: Create letsencrypt certificate
+#  shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
+#  args:
+#    creates: /etc/letsencrypt/live/{{ domain_name }}
+#  ignore_errors: yes
 
 - name: Generate dhparams
   shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
   args:
     creates: /etc/nginx/dhparams.pem
 
-- name: Add letsencrypt cronjob for cert renewal
-  cron:
-    name: letsencrypt_renewal
-    special_time: weekly
-    job: letsencrypt --renew certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }} && service nginx reload
+#- name: Add letsencrypt cronjob for cert renewal
+#  cron:
+#    name: letsencrypt_renewal
+#    special_time: weekly
+#    job: letsencrypt --renew certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }} && service nginx reload
 # Let's encrypt

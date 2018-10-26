@@ -1,12 +1,20 @@
-add_header X-Frame-Options SAMEORIGIN;
-add_header X-Content-Type-Options nosniff;
-add_header X-XSS-Protection "1; mode=block";
-add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com; img-src 'self' data: https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none'; object-src 'none'";
-
-
-# HTTPS server
+{% for domain_name in nginx_sites %}
 server {
-    listen 443 ssl default deferred;
+    listen 80;
+    server_name {{ domain_name }};
+
+    location /.well-known/acme-challenge {
+        root /var/www/letsencrypt;
+        try_files $uri $uri/ =404;
+    }
+
+    #location / {
+    #    return 301 https://{{ domain_name }}$request_uri;
+    #}
+}
+
+server {
+    listen 443 ssl;
     server_name {{ domain_name }};
 
     ssl on;
@@ -31,4 +39,12 @@ server {
     location / {
         try_files $uri $uri/ =404;
     }
+
+    #location / {
+    #        proxy_set_header X-Real-IP $remote_addr;
+    #        proxy_set_header X-Forwarded-For $remote_addr;
+    #        proxy_set_header Host $host;
+    #        proxy_pass http://10.0.3.9:9000;
+    #}
 }
+{% endfor %}
