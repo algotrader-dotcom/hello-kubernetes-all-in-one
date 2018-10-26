@@ -1,0 +1,12 @@
+---
+# tasks file for sysadmin.common
+
+- name: Install requirements packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - python-software-properties
+      - git
+      - mysql-client
