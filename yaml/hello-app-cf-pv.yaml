@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: hello-app
+    spec:
+      containers:
+      - name: hello-app
+        image: gcr.io/k8s-test-218207/hello-app:v1.3
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+          - name: my-config
+            mountPath: /usr/src/app/config
+          - name: my-secret
+            mountPath: /usr/src/app/secret
+      volumes:
+      - name: my-config
+        configMap:
+          name: my-config
+      - name: my-secret
+        secret:
+          secretName: my-secret

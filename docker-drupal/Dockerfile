@@ -19,7 +19,8 @@ RUN rm -rf /ansible
 
 # Install Drupal
 RUN composer create-project drupal-composer/drupal-project:8.x-dev /var/www/drupal/ --stability dev --no-interaction
-COPY settings.php.live /var/www/drupal/web/sites/default/settings.php
+RUN cd /var/www/drupal/ && mkdir -p config/sync
+#COPY settings.php.live /var/www/drupal/web/sites/default/settings.php
 
 RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp* /usr/share/doc/*

@@ -18,8 +18,8 @@ export PROJECT_ID="$(gcloud config get-value project -q)"
 ```
 # Build & Upload to Google Container Registry
 ```
-docker build --no-cache -t gcr.io/${PROJECT_ID}/drupal-app:v1.0 .
-gcloud docker -- push gcr.io/${PROJECT_ID}/drupal-app:v1.0
+docker build --no-cache -t gcr.io/${PROJECT_ID}/drupal-app:v1.2 .
+gcloud docker -- push gcr.io/${PROJECT_ID}/drupal-app:v1.2
 
 cd ..
 kubectl apply -f yaml/drupal-mysql-pv.yaml
