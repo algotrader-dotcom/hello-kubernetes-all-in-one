@@ -1,4 +1,6 @@
-# Let's follow this to automate SSL for vhosts => https://gist.github.com/mattiaslundberg/ba214a35060d3c8603e9b1ec8627d349
+```
+Let's follow this to automate SSL for vhosts => https://gist.github.com/mattiaslundberg/ba214a35060d3c8603e9b1ec8627d349
+```
 
 docker build -t nginx .
 docker run -ti nginx
