@@ -72,3 +72,10 @@ kubectl delete pod -l app=hello-app
 kubectl delete pod -l app=hello-app --now=false --grace-period=30
 or simply changes terminationGracePeriodSeconds to different number then apply
 ```
+
+# Watch on update
+```
+watch -n 1 "kubectl get services"
+watch -n 1 "kubectl get deployments"
+watch -n 1 "kubectl get pods"
+```
