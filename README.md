@@ -66,3 +66,9 @@ kubectl describe deployment
 kubectl get pods
 kubectl exec -ti hello-app-8568d9f9df-khdv2 env
 ```
+# Delete pods by selector ( force rolling update )
+```
+kubectl delete pod -l app=hello-app
+kubectl delete pod -l app=hello-app --now=false --grace-period=30
+or simply changes terminationGracePeriodSeconds to different number then apply
+```

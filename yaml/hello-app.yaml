@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   name: hello-app
 spec:
-  replicas: 2
+  replicas: 6
   selector:
     matchLabels:
       app: hello-app
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: gcr.io/k8s-test-218207/hello-app:v1.3
+        image: gcr.io/k8s-test-218207/hello-app:v1.0
         envFrom:
           - configMapRef:
               name: env-config
@@ -34,3 +34,4 @@ spec:
               name: env-secret
         ports:
         - containerPort: 8080
+      terminationGracePeriodSeconds: 59
